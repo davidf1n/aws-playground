@@ -6,12 +6,14 @@ import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Dashboard from './components/Dashboard';
 
+const origin = window.location.origin;
+
 Amplify.configure({
   ...awsConfig,
   oauth: {
     ...awsConfig.oauth,
-    redirectSignIn: 'http://localhost:3000/dashboard',
-    redirectSignOut: 'http://localhost:3000/',
+    redirectSignIn: `${origin}/dashboard`,
+    redirectSignOut: `${origin}/`,
   },
 });
 function App({ signOut, user }) {
